@@ -1,10 +1,10 @@
 <template>
-  <li @click="handleCheck(todo.id)">
-    <label>
+  <li>
+    <label @change="handleCheck(todo.id)">
       <input
         type="checkbox"
         :checked="todo.done"
-
+        
       />
 			<!-- #region -->
       <!-- 如下代码也能实现功能，但是不太推荐，因为有点违反原则，因为修改了props -->

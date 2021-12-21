@@ -42,18 +42,18 @@ export default {
       },
     },
   },
-  setup(props) {
+  setup (props){
     /* checkAll(e){
 				this.checkAllTodo(e.target.checked)
 			} */
     //清空所有已完成
     function clearAll() {
-      console.log("clearll is clicked");
+			console.log('clearAll is clicked')
       props.clearAllTodo();
     }
-    return {
-      clearAll,
-    };
+		return {
+			clearAll
+		}
   },
 };
 </script>

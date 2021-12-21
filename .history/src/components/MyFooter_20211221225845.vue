@@ -5,7 +5,7 @@
       <input type="checkbox" v-model="isAll" />
     </label>
     <span>
-      <span> 已完成{{ doneTotal }}</span> / 全部{{ total }}
+      <span @click ="isAll"> 已完成{{ doneTotal }}</span> / 全部{{ total }}
     </span>
     <button class="btn btn-danger" @click="clearAll">清除已完成任务</button>
   </div>
@@ -42,18 +42,18 @@ export default {
       },
     },
   },
-  setup(props) {
+  setup (props){
     /* checkAll(e){
 				this.checkAllTodo(e.target.checked)
 			} */
     //清空所有已完成
     function clearAll() {
-      console.log("clearll is clicked");
+			console.log('clearAll is clicked')
       props.clearAllTodo();
     }
-    return {
-      clearAll,
-    };
+		return {
+			clearAll
+		}
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
-  <li @click="handleCheck(todo.id)">
-    <label>
+  <li>
+    <label @click="handleCheck(todo.id)">
       <input
         type="checkbox"
         :checked="todo.done"

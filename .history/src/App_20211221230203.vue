@@ -12,7 +12,7 @@
 
 <script>
 import remove from "lodash/remove";
-import { provide } from "vue";
+import { provide} from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import MyHeader from "./components/MyHeader.vue";
 import MyList from "./components/MyList.vue";
@@ -57,14 +57,14 @@ export default {
       //     todos.splice(i,1)
       //   }
       // }
-      remove(todos, (n) => n.id == id);
+      remove (todos, (n) => n.id == id)
       // todos.map((i,index) =>{
       //   if (i.id == id ){
       //     todos.splice(index,1)}})
       // todos = todos.filter((todo) => todo.id !== id);不能用赋值的方式修改reactive响应式数组
       // todos.shift()
-
-      console.log("todos", todos);
+      
+      console.log("todos", todos)
     }
     //全选or取消全选
     function checkAllTodo(done) {
@@ -79,12 +79,12 @@ export default {
       // });
       // todos.map((i,index) => {
       //   if(i.done){ todos.splice(index,1)
-
+          
       //   };
       // });
-
+      
       remove(todos, (n) => n.done == true);
-      console.log("todos", todos);
+      console.log("todos", todos)
     }
     provide("checkTodo", checkTodo);
     provide("deleteTodo", deleteTodo);
