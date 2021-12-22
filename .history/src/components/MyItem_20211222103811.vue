@@ -1,25 +1,31 @@
 <template>
   <li @click="handleCheck(todo.id)">
     <label>
-      <input type="checkbox" :checked="todo.done" />
-      <!-- #region -->
+      <input
+        type="checkbox"
+        :checked="todo.done"
+
+      />
+			<!-- #region -->
       <!-- 如下代码也能实现功能，但是不太推荐，因为有点违反原则，因为修改了props -->
       <!-- <input type="checkbox" v-model="todo.done"/> -->
-      <!-- #endregion -->
+			<!-- #endregion -->
       <span>{{ todo.title }}</span>
     </label>
-    <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
+    <button class="btn btn-danger"  @click="handleDelete(todo.id)">删除</button>
   </li>
 </template>
 
 <script>
 import { inject } from "vue";
+import draggable from "vuedraggable";
+
 
 export default {
   name: "MyItem",
   //声明接收todo、checkTodo、deleteTodo
   props: ["todo"],
-
+  
   setup() {
     let checkTodo = inject("checkTodo");
     let deleteTodo = inject("deleteTodo");
@@ -32,7 +38,7 @@ export default {
     }
     //删除
     function handleDelete(id) {
-      event.stopPropagation();
+      event.stopPropagation()
       if (confirm("确定删除吗？")) {
         //通知App组件将对应的todo对象删除
         deleteTodo(id);

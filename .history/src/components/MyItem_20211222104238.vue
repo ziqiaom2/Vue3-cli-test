@@ -1,24 +1,43 @@
 <template>
-  <li @click="handleCheck(todo.id)">
-    <label>
-      <input type="checkbox" :checked="todo.done" />
-      <!-- #region -->
-      <!-- 如下代码也能实现功能，但是不太推荐，因为有点违反原则，因为修改了props -->
-      <!-- <input type="checkbox" v-model="todo.done"/> -->
-      <!-- #endregion -->
-      <span>{{ todo.title }}</span>
-    </label>
-    <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
-  </li>
+  <draggable
+    :list="list"
+    :disabled="!enabled"
+    item-key="name"
+    class="list-group"
+    ghost-class="ghost"
+    :move="checkMove"
+    @start="dragging = true"
+    @end="dragging = false"
+  >
+    <template #item="{ element }">
+      <div class="list-group-item" :class="{ 'not-draggable': !enabled }">
+        <li @click="handleCheck(todo.id)">
+          <label>
+            <input type="checkbox" :checked="todo.done" />
+            <!-- #region -->
+            <!-- 如下代码也能实现功能，但是不太推荐，因为有点违反原则，因为修改了props -->
+            <!-- <input type="checkbox" v-model="todo.done"/> -->
+            <!-- #endregion -->
+            <span>{{ todo.title }}</span>
+          </label>
+          <button class="btn btn-danger" @click="handleDelete(todo.id)">
+            删除
+          </button>
+        </li>
+      </div>
+    </template>
+  </draggable>
 </template>
 
 <script>
 import { inject } from "vue";
+import draggable from "vuedraggable";
 
 export default {
   name: "MyItem",
   //声明接收todo、checkTodo、deleteTodo
   props: ["todo"],
+  components:{draggable},
 
   setup() {
     let checkTodo = inject("checkTodo");

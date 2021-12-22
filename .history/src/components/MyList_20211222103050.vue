@@ -1,38 +1,33 @@
 <template>
   <ul class="todo-main">
-    <draggable class="dragArea list-group w-full" :todos="todos" @change="log">
-      <MyItem
-        class="list-group-item bg-gray-300 m-1 p-3 rounded-md text-center"
-        v-for="todoObj in todos"
-        :key="todoObj.id"
-        :todo="todoObj"
-      />
+    <draggable
+        v-model="todos_copy"
+      group="people"
+      @start="drag = true"
+      @end="drag = false"
+      item-key="id"
+    >
+      <template #item="{ todos }">
+        <MyItem v-for="todoObj in todos" :key="todoObj.id" :todo="todoObj" />
+      </template>
     </draggable>
   </ul>
 </template>
 
 <script>
 import MyItem from "./MyItem.vue";
-import { VueDraggableNext } from "vue-draggable-next";
+import draggable from "vuedraggable";
 export default {
   name: "MyList",
-  components: { MyItem, draggable: VueDraggableNext },
+  components: { MyItem, draggable },
   //声明接收App传递过来的数据，其中todos是自己用的，checkTodo和deleteTodo是给子组件MyItem用的
   props: ["todos"],
-  // setup() {
-  //   let drag = ref(false);
-  //   function onStart() {
-  //     drag = true;
-  //   }
-  //   function onEnd() {
-  //     drag = false;
-  //   }
-  //   return {
-  //     drag,
-  //     onStart,
-  //     onEnd,
-  //   };
-  // },
+  data(){
+    return{
+      
+    }
+  }
+  
 };
 </script>
 
