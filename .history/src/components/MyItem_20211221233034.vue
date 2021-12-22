@@ -12,18 +12,17 @@
 			<!-- #endregion -->
       <span>{{ todo.title }}</span>
     </label>
-    <button class="btn btn-danger"  @click="handleDelete(todo.id)">删除</button>
+    <button class="btn btn-danger" ref="deleteItemButton" @click="handleDelete(todo.id)">删除</button>
   </li>
 </template>
 
 <script>
 import { inject } from "vue";
-
 export default {
   name: "MyItem",
   //声明接收todo、checkTodo、deleteTodo
   props: ["todo"],
-  
+  deleteItemButton.onclick = (e) =>{e.stopPropagation()}
   setup() {
     let checkTodo = inject("checkTodo");
     let deleteTodo = inject("deleteTodo");
@@ -36,7 +35,7 @@ export default {
     }
     //删除
     function handleDelete(id) {
-      event.stopPropagation()
+
       if (confirm("确定删除吗？")) {
         //通知App组件将对应的todo对象删除
         deleteTodo(id);

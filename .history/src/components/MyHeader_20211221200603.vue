@@ -22,7 +22,7 @@ export default {
       //校验数据
       if (!title.value.trim()) return alert("输入不能为空");
       //将用户的输入包装成一个todo对象
-      const todoObj = { id: nanoid(), title: title.value.trim(), done: false };
+      const todoObj = { id: nanoid(), title: title.value, done: false };
       //通知App组件去添加一个todo对象
       console.log("props.addTodo", props.addTodo);
 
