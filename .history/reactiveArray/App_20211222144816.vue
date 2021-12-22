@@ -8,7 +8,6 @@
     :checkAllTodo="checkAllTodo"
     :clearAllTodo="clearAllTodo"
   />
-  <Test></Test>
 </template>
 
 <script>
@@ -18,7 +17,6 @@ import HelloWorld from "./components/HelloWorld.vue";
 import MyHeader from "./components/MyHeader.vue";
 import MyList from "./components/MyList.vue";
 import MyFooter from "./components/MyFooter.vue";
-import Test from "../reactiveArray/Test.vue";
 import { reactive } from "@vue/reactivity";
 export default {
   name: "App",
@@ -27,7 +25,6 @@ export default {
     MyHeader,
     MyList,
     MyFooter,
-    Test
   },
   setup() {
     let todos = reactive(

@@ -1,14 +1,8 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3.0" />
-  <MyHeader :addTodo="addTodo" />
-  <MyList :todos="todos" />
-  <MyFooter
-    :todos="todos"
-    :checkAllTodo="checkAllTodo"
-    :clearAllTodo="clearAllTodo"
-  />
-  <Test></Test>
+  
+  <ul>
+    <li v-for="todo in todos" :key="todo.id"></li>
+  </ul>
 </template>
 
 <script>
@@ -18,7 +12,6 @@ import HelloWorld from "./components/HelloWorld.vue";
 import MyHeader from "./components/MyHeader.vue";
 import MyList from "./components/MyList.vue";
 import MyFooter from "./components/MyFooter.vue";
-import Test from "../reactiveArray/Test.vue";
 import { reactive } from "@vue/reactivity";
 export default {
   name: "App",
@@ -27,7 +20,6 @@ export default {
     MyHeader,
     MyList,
     MyFooter,
-    Test
   },
   setup() {
     let todos = reactive(
