@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="todo in dee" :key="todo.id">
+    <li v-for="todo in todos" :key="todo.id">
       <span>{{ todo.title }}</span>
       <button @click="deleteTodo(todo.id)">删除</button>
     </li>
@@ -9,37 +9,30 @@
 
 <script>
 import remove from "lodash/remove";
-import { reactive, ref, toRefs } from "@vue/reactivity";
-// import {toReactive} from 'vue'
-
+import { reactive, toActive } from "@vue/reactivity";
 export default {
-  name: "Test",
+  name: "App",
   components: {},
   setup() {
-    let todos = reactive({
-      dee: [
-        { id: "001", title: "Vue", done: false },
-        { id: "002", title: "React", done: false },
-        { id: "003", title: "Angular", done: false },
-      ],
-    });
+    let todos = reactive([
+      { id: "001", title: "Vue", done: false },
+      { id: "002", title: "React", done: false },
+      { id: "003", title: "Angular", done: false },
+    ]);
 
     function deleteTodo(id) {
       // remove(todos, (n) => n.id == id);
       // 解决，可触发响应式
 
-      todos.dee = todos.dee.filter((todo) => todo.id !== id);
+      todos = toActive(todos.filter((todo) => todo.id !== id))
       // 响应式丢失，变为普通数组，元素为proxy对象
       //即使再包一层reactive函数，依然丢失响应式
-      console.log(
-        "filtered",
-        todos.dee.filter((todo) => todo.id !== id)
-      );
-      console.log("todos.dee:", todos.dee);
+
+      console.log("todos:", todos);
     }
 
     return {
-      ...toRefs(todos),
+      todos,
 
       deleteTodo,
     };

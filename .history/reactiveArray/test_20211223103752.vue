@@ -28,14 +28,14 @@ export default {
       // remove(todos, (n) => n.id == id);
       // 解决，可触发响应式
 
-      todos.dee = todos.dee.filter((todo) => todo.id !== id);
+      dee = dee.filter((todo) => todo.id !== id);
       // 响应式丢失，变为普通数组，元素为proxy对象
       //即使再包一层reactive函数，依然丢失响应式
       console.log(
         "filtered",
-        todos.dee.filter((todo) => todo.id !== id)
+        dee.filter((todo) => todo.id !== id)
       );
-      console.log("todos.dee:", todos.dee);
+      console.log("dee:", dee);
     }
 
     return {

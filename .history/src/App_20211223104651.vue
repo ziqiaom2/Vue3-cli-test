@@ -19,7 +19,7 @@ import MyHeader from "./components/MyHeader.vue";
 import MyList from "./components/MyList.vue";
 import MyFooter from "./components/MyFooter.vue";
 import Test from "../reactiveArray/Test.vue";
-import { reactive, toRefs } from "@vue/reactivity";
+import { reactive } from "@vue/reactivity";
 export default {
   name: "App",
   components: {
@@ -39,6 +39,7 @@ export default {
           { id: "003", title: "Angular", done: false },
         ],
     });
+    let arr = reactive([1, 2, 3]);
 
     //添加一个todo
     function addTodo(todoObj) {
@@ -60,12 +61,11 @@ export default {
       //     todos.splice(i,1)
       //   }
       // }
-      // remove(data.todos, (n) => n.id == id);
+      remove(data.todos, (n) => n.id == id);
       // todos.map((i,index) =>{
       //   if (i.id == id ){
       //     todos.splice(index,1)}})
-      data.todos = data.todos.filter((todo) => todo.id !== id);
-      //不能用赋值的方式修改reactive响应式数组
+      // todos = todos.filter((todo) => todo.id !== id);不能用赋值的方式修改reactive响应式数组
       // todos.shift()
 
       console.log("data.todos", data.todos);
@@ -78,25 +78,26 @@ export default {
     }
     //清除所有已经完成的todo
     function clearAllTodo() {
-      data.todos = data.todos.filter((todo) => {
-        return !todo.done;
-      });
+      // todos = todos.filter((todo) => {
+      //   return !todo.done;
+      // });
       // todos.map((i,index) => {
       //   if(i.done){ todos.splice(index,1)
 
       //   };
       // });
 
-      // remove(data.todos, (n) => n.done == true);
-      console.log("data.todos", data.todos);
+      remove(todos, (n) => n.done == true);
+      console.log("todos", todos);
     }
     provide("checkTodo", checkTodo);
     provide("deleteTodo", deleteTodo);
-    console.log("todos.length", data.todos.length);
+    console.log("todos.length", todos.length);
     // console.log("arr", arr);
     console.log("addTodo", addTodo);
     return {
-      ...toRefs(data),
+      todos,
+      arr,
       addTodo,
       checkTodo,
       deleteTodo,
