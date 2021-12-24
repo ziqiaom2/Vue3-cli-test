@@ -31,17 +31,15 @@
 <script>
 import GameControl from "@/GreedySnake/GameControl";
 import ScorePanel from "@/GreedySnake/ScorePanel";
-
+const gameControl = new GameControl();
 export default {
   name: "GreedySnake",
   setup() {
-      function toTest (){
-        new GameControl()
-      }
+
       // const scorePanel = new ScorePanel(100, 2);
       // scorePanel.addScore()
       return {
-        toTest
+        
       };
     }
   }

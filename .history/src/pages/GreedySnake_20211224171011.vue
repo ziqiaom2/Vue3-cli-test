@@ -6,7 +6,6 @@
         <div id="snake">
           <!--snake内部的div 表示蛇的各部分-->
           <div></div>
-
         </div>
 
         <!--设置食物-->
@@ -29,19 +28,22 @@
 </template>
 
 <script>
-import GameControl from "@/GreedySnake/GameControl";
+import Food from "@/GreedySnake/Food";
 import ScorePanel from "@/GreedySnake/ScorePanel";
 
 export default {
   name: "GreedySnake",
   setup() {
-      function toTest (){
-        new GameControl()
-      }
+    function toTest() {
+      const food = new Food();
+      console.log(food.X, food.Y);
+      food.change();
+      console.log(food.X, food.Y);
+    }
       // const scorePanel = new ScorePanel(100, 2);
       // scorePanel.addScore()
       return {
-        toTest
+        toTest,
       };
     }
   }
