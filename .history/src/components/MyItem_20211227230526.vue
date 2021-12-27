@@ -1,7 +1,6 @@
 <template>
     <li @click="handleCheck(todo.id)">
-        <!-- 这里为什么不向外层冒泡呢？？？ -->
-        <label @click="testFunc">
+        <label @click="testFunc"> 
             <input type="checkbox" :checked="todo.done" />
             <!-- #region -->
             <!-- 如下代码也能实现功能，但是不太推荐，因为有点违反原则，因为修改了props -->
@@ -57,9 +56,9 @@ export default {
             //vue 3 应使用nextTick来获取刚显示出来的input标签
             nextTick(() => editBox.value.focus());
         }
-        function editClicked() {
-            event.stopPropagation();
-        }
+        // function editClicked() {
+        //     event.stopPropagation();
+        // }
         function editCompleted(id) {
             return function (value) {
                 edited.value = !edited.value;
@@ -68,14 +67,14 @@ export default {
                 editTodo(id, value);
             };
         }
-        function testFunc() {
-            console.log('this is a test');
+        function testFunc (){
+          console.log('this is a test');
         }
         return {
             handleCheck,
             handleDelete,
             handleEdit,
-            editClicked,
+            // editClicked,
             editCompleted,
             testFunc,
             edited,

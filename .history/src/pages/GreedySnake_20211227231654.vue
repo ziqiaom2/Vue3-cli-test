@@ -49,8 +49,7 @@ export default {
       // const scorePanel = new ScorePanel(100, 2);
       // scorePanel.addScore()
       return {
-        toTest,
-        backToHome
+        toTest
       };
     }
   }

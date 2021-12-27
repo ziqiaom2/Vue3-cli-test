@@ -32,25 +32,20 @@
 <script>
 import GameControl from "@/GreedySnake/GameControl";
 import ScorePanel from "@/GreedySnake/ScorePanel";
-import { useRouter } from 'vue-router';
-
 
 export default {
   name: "GreedySnake",
   setup() {
-      const router =useRouter()
       function toTest (){
         new GameControl()
       }
       function backToHome (){
-        router.push({name:'home'})
-
+        
       }
       // const scorePanel = new ScorePanel(100, 2);
       // scorePanel.addScore()
       return {
-        toTest,
-        backToHome
+        toTest
       };
     }
   }

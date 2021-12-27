@@ -1,7 +1,6 @@
 <template>
     <li @click="handleCheck(todo.id)">
-        <!-- 这里为什么不向外层冒泡呢？？？ -->
-        <label @click="testFunc">
+        <label @click="()=>console.log('1111')"> 
             <input type="checkbox" :checked="todo.done" />
             <!-- #region -->
             <!-- 如下代码也能实现功能，但是不太推荐，因为有点违反原则，因为修改了props -->
@@ -68,16 +67,12 @@ export default {
                 editTodo(id, value);
             };
         }
-        function testFunc() {
-            console.log('this is a test');
-        }
         return {
             handleCheck,
             handleDelete,
             handleEdit,
             editClicked,
             editCompleted,
-            testFunc,
             edited,
             editBox,
         };

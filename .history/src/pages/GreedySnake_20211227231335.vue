@@ -43,14 +43,12 @@ export default {
         new GameControl()
       }
       function backToHome (){
-        router.push({name:'home'})
 
       }
       // const scorePanel = new ScorePanel(100, 2);
       // scorePanel.addScore()
       return {
-        toTest,
-        backToHome
+        toTest
       };
     }
   }
