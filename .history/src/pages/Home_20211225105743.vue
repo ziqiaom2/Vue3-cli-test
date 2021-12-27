@@ -8,7 +8,7 @@
     <div @click="toGreedySnake">贪吃蛇</div>
 </template>
 
-<script>
+<script >
 import remove from 'lodash/remove';
 import { provide } from 'vue';
 import HelloWorld from '../components/HelloWorld.vue';
@@ -109,7 +109,6 @@ export default {
     },
 };
 </script>
-
 
 <style>
 /*base*/
