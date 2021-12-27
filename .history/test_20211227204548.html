@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body {
+				margin: 0;
+				padding: 0;
+			}
+ 
+			a {
+				text-decoration: none;
+				color: black;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 头部 -->
+			<label for="todo">
+				TODOLIST:
+			</label>
+			<input type="text" id="todo" v-model.trim="inputValue" @keyup.enter="add" placeholder="请输入内容" />
+			<input type="button" value="提交" @click="add" />
+			<br />
+			<!-- 数据列表展示 -->
+			<template>
+				<ul>
+					<li v-for="(todo,i) in todos" :key="i">
+						<div v-if="i == cursor_id">
+							<input type="text" v-model.trim="temp_todo" @keyup.enter="edited(i,temp_todo)" @blur="edited(i,temp_todo)" />
+							<a href="#" @click="del(i)">删除</a>
+						</div>
+						<div v-else>
+							<span @dblclick="editing(i,todo)">{{todo}}</span> &nbsp;&nbsp;
+							<a href="#" @click="del(i)">删除</a>
+						</div>
+					</li>
+				</ul>
+			</template>
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: {
+					todos: ['html', 'css', 'javascript'],//全部数据
+					inputValue: '',//input框值
+					temp_todo: null,//要改的新值
+					cursor_id: null,//就是将要点击的下标
+				},
+				methods: {
+					// 添加数据
+					add: function() {
+						this.todos.push(this.inputValue);
+						this.inputValue = '';
+					},
+					// 删除数据
+					del: function(i) {
+						this.todos.splice(i, 1);
+					},
+					//换一种情况，就是数据的原始状态
+					editing: function(i, todo) {
+						this.cursor_id = i;
+						// console.log(this.cursor_id);
+						this.temp_todo = todo;
+					},
+					// 在修改值的时候，按下回车键，输入框的值可以改变
+					edited: function(i, todo) {
+						this.cursor_id = null;
+						this.todos[parseInt(i)] = todo;
+					}
+				}
+ 
+			})
+		</script>
+	</body>
+</html>

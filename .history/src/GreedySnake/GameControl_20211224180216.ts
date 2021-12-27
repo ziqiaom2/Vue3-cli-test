@@ -95,7 +95,7 @@ class GameControl {
       this.snake.Y = Y;
     } catch (e:unknown) {
       // 进入到catch，说明出现了异常，游戏结束，弹出一个提示信息
-      alert(" GAME OVER!");
+      alert(e.message + " GAME OVER!");
       // 将isLive设置为false
       this.isLive = false;
     }

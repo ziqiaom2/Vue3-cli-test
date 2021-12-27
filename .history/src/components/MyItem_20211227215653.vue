@@ -6,16 +6,15 @@
             <!-- 如下代码也能实现功能，但是不太推荐，因为有点违反原则，因为修改了props -->
             <!-- <input type="checkbox" v-model="todo.done"/> -->
             <!-- #endregion -->
-            <span v-if="!edited"> {{ todo.title }}</span>
-            <input ref="editBox" @click="editClicked" type="text" v-show="edited" @keyup.enter="editCompleted" :value="todo.title" />
+            <input ref = "editBox" @click="editClicked" type="text" v-if="edited" @keyup.enter="editCompleted" :value="todo.title" />
         </label>
         <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
-        <button class="btn btn-edit" @click="handleEdit(todo.id)">编辑</button>
+        <button class="btn btn-edit" ref="editBox" @click="handleEdit(todo.id)">编辑</button>
     </li>
 </template>
 
 <script>
-import { inject, reactive, ref, toRef, nextTick } from 'vue';
+import { inject, reactive, ref, toRef } from 'vue';
 
 export default {
     name: 'MyItem',
@@ -24,7 +23,7 @@ export default {
 
     setup() {
         let edited = ref(false);
-        const editBox = ref(null);
+        const editBox = ref();
 
         let checkTodo = inject('checkTodo');
         let deleteTodo = inject('deleteTodo');
@@ -48,13 +47,9 @@ export default {
         function handleEdit(id, title) {
             event.stopPropagation();
             console.log(id);
-
             edited.value = !edited.value;
-
             console.log(edited.value);
-            console.log('editBox.value:', editBox);
-            //vue 3 应使用nextTick来获取刚显示出来的input标签
-            nextTick(() => editBox.value.focus());
+            console.log(editBox);;
         }
         function editClicked() {
             event.stopPropagation();
