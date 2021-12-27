@@ -1,5 +1,5 @@
 <template>
-    <li @click="handleCheck(todo.id)" @dblclick="handleEdit(todo.id)">
+    <li @click="handleCheck(todo.id)">
         <!-- 这里为什么不向外层冒泡呢？？？ -->
         <label @click="testFunc">
             <input type="checkbox" :checked="todo.done" />
@@ -70,7 +70,7 @@ export default {
             };
         }
         function testFunc() {
-            console.log('testFunc is triggered');
+            console.log('this is a test');
         }
         return {
             handleCheck,

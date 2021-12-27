@@ -1,5 +1,5 @@
 <template>
-    <li @click="handleCheck(todo.id)" @dblclick="handleEdit(todo.id)">
+    <li @click="handleCheck(todo.id)">
         <!-- 这里为什么不向外层冒泡呢？？？ -->
         <label @click="testFunc">
             <input type="checkbox" :checked="todo.done" />
@@ -35,8 +35,7 @@ export default {
         // console.log("deleteTodo", deleteTodo);
         function handleCheck(id) {
             //通知App组件将对应的todo对象的done值取反
-            console.log('handleCheck is triggered');
-            checkTodo(id);
+            nextTick(() =>checkTodo(id)) ;
         }
         //删除
         function handleDelete(id) {
@@ -70,7 +69,7 @@ export default {
             };
         }
         function testFunc() {
-            console.log('testFunc is triggered');
+            console.log('this is a test');
         }
         return {
             handleCheck,

@@ -1,7 +1,7 @@
 <template>
-    <li @click="handleCheck(todo.id)" @dblclick="handleEdit(todo.id)">
+    <li @click="handleCheck(todo.id)">
         <!-- 这里为什么不向外层冒泡呢？？？ -->
-        <label @click="testFunc">
+        <label @click="handleCheck(todo.id)">
             <input type="checkbox" :checked="todo.done" />
             <!-- #region -->
             <!-- 如下代码也能实现功能，但是不太推荐，因为有点违反原则，因为修改了props -->
@@ -35,7 +35,6 @@ export default {
         // console.log("deleteTodo", deleteTodo);
         function handleCheck(id) {
             //通知App组件将对应的todo对象的done值取反
-            console.log('handleCheck is triggered');
             checkTodo(id);
         }
         //删除
@@ -69,9 +68,9 @@ export default {
                 editTodo(id, value);
             };
         }
-        function testFunc() {
-            console.log('testFunc is triggered');
-        }
+        // function testFunc() {
+        //     console.log('this is a test');
+        // }
         return {
             handleCheck,
             handleDelete,

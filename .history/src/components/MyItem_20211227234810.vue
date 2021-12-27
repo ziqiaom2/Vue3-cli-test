@@ -33,10 +33,10 @@ export default {
         //勾选or取消勾选
         // console.log("checkTodo", checkTodo);
         // console.log("deleteTodo", deleteTodo);
-        function handleCheck(id) {
+        async function handleCheck(id) {
             //通知App组件将对应的todo对象的done值取反
             console.log('handleCheck is triggered');
-            checkTodo(id);
+            await checkTodo(id);
         }
         //删除
         function handleDelete(id) {
