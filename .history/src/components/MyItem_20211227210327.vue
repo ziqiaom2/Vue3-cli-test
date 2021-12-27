@@ -15,9 +15,7 @@
       />
     </label>
     <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
-    <button class="btn btn-edit" ref="editBox" @click="handleEdit(todo.id)">
-      编辑
-    </button>
+    <button class="btn btn-edit" ref = "editBox" @click="handleEdit(todo.id)">编辑</button>
   </li>
 </template>
 
@@ -31,7 +29,7 @@ export default {
 
   setup() {
     let edited = ref(false);
-    const editBox = ref();
+    const editBox = ref(null)
 
     let checkTodo = inject("checkTodo");
     let deleteTodo = inject("deleteTodo");
@@ -57,14 +55,13 @@ export default {
       console.log(id);
       edited.value = !edited.value;
       console.log(edited.value);
-      editBox.value.focus();
+
     }
     function editClicked() {
       event.stopPropagation();
     }
     function editCompleted() {
       edited.value = !edited.value;
-      console.log(edited.value);
     }
     return {
       handleCheck,
@@ -73,7 +70,7 @@ export default {
       editClicked,
       editCompleted,
       edited,
-      editBox,
+      editBox
     };
   },
 };

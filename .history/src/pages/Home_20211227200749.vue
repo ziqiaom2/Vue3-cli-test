@@ -21,7 +21,7 @@ import MyList from "../components/MyList.vue";
 import MyFooter from "../components/MyFooter.vue";
 import Test from "@/components/Test.vue";
 import { reactive, toRefs } from "@vue/reactivity";
-import { useRouter } from "vue-router";
+import { useRouter } from 'vue-router';
 export default {
   name: "Home",
   components: {
@@ -88,27 +88,18 @@ export default {
 
       //   };
       // });
+
       // remove(data.todos, (n) => n.done == true);
       console.log("data.todos", data.todos);
     }
-    function editTodo(id, title) {
-      data.todos.forEach((todo) => {
-        if (todo.id === id) {
-          todo.title = title;
-        }
-      });
-    }
-
     provide("checkTodo", checkTodo);
     provide("deleteTodo", deleteTodo);
-    provide("editTodo", editTodo);
-
     console.log("todos.length", data.todos.length);
     // console.log("arr", arr);
     console.log("addTodo", addTodo);
-    const router = useRouter();
-    function toGreedySnake() {
-      router.push({ name: "greedysnake" });
+    const router =useRouter ()
+    function toGreedySnake (){
+      router.push({name:'greedysnake'})
     }
     return {
       ...toRefs(data),
@@ -117,8 +108,7 @@ export default {
       deleteTodo,
       checkAllTodo,
       clearAllTodo,
-      toGreedySnake,
-      editTodo,
+      toGreedySnake
     };
   },
 };

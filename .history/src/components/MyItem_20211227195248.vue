@@ -6,23 +6,15 @@
       <!-- 如下代码也能实现功能，但是不太推荐，因为有点违反原则，因为修改了props -->
       <!-- <input type="checkbox" v-model="todo.done"/> -->
       <!-- #endregion -->
-      <input
-        @click="editClicked"
-        type="text"
-        v-if="edited"
-        @keyup.enter="editCompleted"
-        :value="todo.title"
-      />
+      <span>{{ todo.title }}</span>
     </label>
     <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
-    <button class="btn btn-edit" ref="editBox" @click="handleEdit(todo.id)">
-      编辑
-    </button>
+    <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
   </li>
 </template>
 
 <script>
-import { inject, reactive, ref, toRef } from "vue";
+import { inject } from "vue";
 
 export default {
   name: "MyItem",
@@ -30,12 +22,8 @@ export default {
   props: ["todo"],
 
   setup() {
-    let edited = ref(false);
-    const editBox = ref();
-
     let checkTodo = inject("checkTodo");
     let deleteTodo = inject("deleteTodo");
-    let editTodo = inject("editTodo");
     //勾选or取消勾选
     // console.log("checkTodo", checkTodo);
     // console.log("deleteTodo", deleteTodo);
@@ -51,29 +39,9 @@ export default {
         deleteTodo(id);
       }
     }
-
-    function handleEdit(id, title) {
-      event.stopPropagation();
-      console.log(id);
-      edited.value = !edited.value;
-      console.log(edited.value);
-      editBox.value.focus();
-    }
-    function editClicked() {
-      event.stopPropagation();
-    }
-    function editCompleted() {
-      edited.value = !edited.value;
-      console.log(edited.value);
-    }
     return {
       handleCheck,
       handleDelete,
-      handleEdit,
-      editClicked,
-      editCompleted,
-      edited,
-      editBox,
     };
   },
 };
@@ -87,6 +55,7 @@ li {
   line-height: 36px;
   padding: 0 5px;
   border-bottom: 1px solid #ddd;
+  display: flex;
 }
 
 li label {
@@ -102,9 +71,8 @@ li label li input {
 }
 
 li button {
-  width: 4rem;
-  margin-left: 0.5rem;
-  float: right;
+  padding-left: 0,5rem;
+  /* float: right; */
   display: none;
   margin-top: 3px;
 }
@@ -122,6 +90,9 @@ li:hover {
 }
 
 li:hover button {
+  
   display: block;
+  justify-content: space-between;
+  
 }
 </style>
