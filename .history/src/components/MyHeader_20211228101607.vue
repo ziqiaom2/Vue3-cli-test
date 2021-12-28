@@ -53,7 +53,6 @@ export default {
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 4px 7px;
-  margin-right: 6px;
 }
 
 .todo-header input:focus {

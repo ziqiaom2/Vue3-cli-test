@@ -1,5 +1,5 @@
 <template>
-  <li @dblclick="handleEdit(todo.id)" @click="handleCheck(todo.id)" >
+  <li @click="handleCheck(todo.id)" @dblclick="handleEdit(todo.id)">
     <!-- 这里为什么不向外层冒泡呢？？？ -->
     <label @click="testFunc">
       <input type="checkbox" :checked="todo.done" />
@@ -15,7 +15,7 @@
         v-if="edited"
         @keyup.enter="editCompleted(todo.id)()"
         :value="todo.title"
-        
+        @blur="editCompleted(todo.id)()"
       />
     </label>
     <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
@@ -57,7 +57,6 @@ export default {
 
     function handleEdit(id) {
       event.stopPropagation();
-      event.preventDefault()
       console.log(id);
 
       edited.value = !edited.value;

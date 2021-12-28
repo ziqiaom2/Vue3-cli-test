@@ -1,5 +1,5 @@
 <template>
-  <!-- vue3.0配置缓存页面 Component是固定写法-->
+  <!-- vue3.0配置 Component是固定写法-->
   <router-view v-slot="{ Component }">
     <keep-alive>
       <component :is="Component" v-if="$route.meta.keepAlive" />

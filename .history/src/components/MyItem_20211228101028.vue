@@ -1,5 +1,5 @@
 <template>
-  <li @dblclick="handleEdit(todo.id)" @click="handleCheck(todo.id)" >
+  <li @click="handleCheck(todo.id)" @dblclick="handleEdit(todo.id)">
     <!-- 这里为什么不向外层冒泡呢？？？ -->
     <label @click="testFunc">
       <input type="checkbox" :checked="todo.done" />

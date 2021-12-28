@@ -11,7 +11,6 @@ const routes: Array<RouteRecordRaw> = [
     path: "/",
     name: "home",
     component: () => import(/* webpackChunkName: "Home" */ "../pages/Home.vue"),
-    //路由配置缓存页面
     meta: { keepAlive: true },
   },
 ];

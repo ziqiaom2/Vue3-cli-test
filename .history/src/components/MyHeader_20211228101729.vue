@@ -47,13 +47,12 @@ export default {
 <style scoped>
 /*header*/
 .todo-header input {
-  width: 100%;
+  width: 90%;
   height: 28px;
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 4px 7px;
-  margin-right: 6px;
 }
 
 .todo-header input:focus {
