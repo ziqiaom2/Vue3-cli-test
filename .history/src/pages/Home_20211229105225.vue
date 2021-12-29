@@ -60,7 +60,7 @@ export default {
 		function checkTodo(id) {
 			data.todos.forEach((todo) => {
 				if (todo.id === id) todo.done = !todo.done;
-			}); setLocalSttorage()
+			});setLocalSttorage()
 		}
 		//删除一个todo
 		function deleteTodo(id) {
@@ -84,7 +84,7 @@ export default {
 		function checkAllTodo(done) {
 			data.todos.forEach((todo) => {
 				todo.done = done;
-			}); setLocalSttorage()
+			});setLocalSttorage()
 		}
 		//清除所有已经完成的todo
 		function clearAllTodo() {
@@ -105,7 +105,7 @@ export default {
 				if (todo.id === id) {
 					todo.title = value;
 				}
-			}); setLocalSttorage()
+			});setLocalSttorage()
 		}
 
 		provide("checkTodo", checkTodo);

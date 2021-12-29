@@ -31,10 +31,11 @@ export default {
 	},
 	created() {
 		console.log('created:', this)
-		this.todos = JSON.parse(localStorage.getItem('todos'))
-
 	},
-
+	beforeUpdate() {
+		const parsed = JSON.stringify(this.todos)
+		localStorage.setItem('todos', parsed)
+	},
 
 
 	setup() {
@@ -54,13 +55,12 @@ export default {
 			// todos[0]={ id: "00123", title: "开", done: false }
 			//vue3只解决了索引值方式修改数组和对象的问题，反而失去了arr= newarr 赋值形式的响应式
 			console.log("todos", data.todos);
-			setLocalSttorage()
 		}
 		//勾选or取消勾选一个todo
 		function checkTodo(id) {
 			data.todos.forEach((todo) => {
 				if (todo.id === id) todo.done = !todo.done;
-			}); setLocalSttorage()
+			});
 		}
 		//删除一个todo
 		function deleteTodo(id) {
@@ -78,13 +78,12 @@ export default {
 			// todos.shift()
 
 			console.log("data.todos", data.todos);
-			setLocalSttorage()
 		}
 		//全选or取消全选
 		function checkAllTodo(done) {
 			data.todos.forEach((todo) => {
 				todo.done = done;
-			}); setLocalSttorage()
+			});
 		}
 		//清除所有已经完成的todo
 		function clearAllTodo() {
@@ -97,7 +96,6 @@ export default {
 			//   };
 			// });
 			// remove(data.todos, (n) => n.done == true);
-			setLocalSttorage()
 			console.log("data.todos", data.todos);
 		}
 		function editTodo(id, value) {
@@ -105,7 +103,7 @@ export default {
 				if (todo.id === id) {
 					todo.title = value;
 				}
-			}); setLocalSttorage()
+			});
 		}
 
 		provide("checkTodo", checkTodo);
@@ -118,12 +116,6 @@ export default {
 		const router = useRouter();
 		function toGreedySnake() {
 			router.push({ name: "greedysnake" });
-			setLocalSttorage()
-		}
-		//进行localStorage
-		function setLocalSttorage() {
-			const parsed = JSON.stringify(data.todos)
-			localStorage.setItem('todos', parsed)
 		}
 		return {
 			...toRefs(data),
@@ -134,7 +126,6 @@ export default {
 			clearAllTodo,
 			toGreedySnake,
 			editTodo,
-			setLocalSttorage
 		};
 	},
 };

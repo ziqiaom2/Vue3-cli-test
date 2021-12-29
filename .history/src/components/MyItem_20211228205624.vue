@@ -8,7 +8,7 @@
       <!-- 如下代码也能实现功能，但是不太推荐，因为有点违反原则，因为修改了props -->
       <!-- <input type="checkbox" v-model="todo.done"/> -->
       <!-- #endregion -->
-      <span v-show="!edited">{{ todo.title }}</span>
+      <span v-show="!edited"> {{ todo.title }}</span>
       <input
         ref="editBox"
         @click="editClicked"

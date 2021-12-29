@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */ /* eslint-disable
-prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable prettier/prettier */
 <template>
 	<img alt="Vue logo" src="../assets/logo.png" />
 	<HelloWorld msg="Hello Vue 3.0" />
@@ -11,17 +11,17 @@ prettier/prettier */
 </template>
 
 <script>
-import remove from "lodash/remove";
-import { provide } from "vue";
-import HelloWorld from "../components/HelloWorld.vue";
-import MyHeader from "../components/MyHeader.vue";
-import MyList from "../components/MyList.vue";
-import MyFooter from "../components/MyFooter.vue";
-import Test from "@/components/Test.vue";
-import { reactive, toRefs } from "@vue/reactivity";
-import { useRouter } from "vue-router";
+import remove from 'lodash/remove';
+import { provide } from 'vue';
+import HelloWorld from '../components/HelloWorld.vue';
+import MyHeader from '../components/MyHeader.vue';
+import MyList from '../components/MyList.vue';
+import MyFooter from '../components/MyFooter.vue';
+import Test from '@/components/Test.vue';
+import { reactive, toRefs } from '@vue/reactivity';
+import { useRouter } from 'vue-router';
 export default {
-	name: "Home",
+	name: 'Home',
 	components: {
 		HelloWorld,
 		MyHeader,
@@ -29,22 +29,14 @@ export default {
 		MyFooter,
 		Test,
 	},
-	created() {
-		console.log('created:', this)
-		this.todos = JSON.parse(localStorage.getItem('todos'))
-
-	},
-
-
-
 	setup() {
 		let data = reactive({
 			todos:
 				//由于todos是MyHeader组件和MyFooter组件都在使用，所以放在App中（状态提升）
 				[
-					{ id: "001", title: "Vue", done: false },
-					{ id: "002", title: "React", done: false },
-					{ id: "003", title: "Angular", done: false },
+					{ id: '001', title: 'Vue', done: false },
+					{ id: '002', title: 'React', done: false },
+					{ id: '003', title: 'Angular', done: false },
 				],
 		});
 
@@ -53,14 +45,13 @@ export default {
 			data.todos.unshift(todoObj);
 			// todos[0]={ id: "00123", title: "开", done: false }
 			//vue3只解决了索引值方式修改数组和对象的问题，反而失去了arr= newarr 赋值形式的响应式
-			console.log("todos", data.todos);
-			setLocalSttorage()
+			console.log('todos', data.todos);
 		}
 		//勾选or取消勾选一个todo
 		function checkTodo(id) {
 			data.todos.forEach((todo) => {
 				if (todo.id === id) todo.done = !todo.done;
-			}); setLocalSttorage()
+			});
 		}
 		//删除一个todo
 		function deleteTodo(id) {
@@ -77,14 +68,13 @@ export default {
 			//不能用赋值的方式修改reactive响应式数组
 			// todos.shift()
 
-			console.log("data.todos", data.todos);
-			setLocalSttorage()
+			console.log('data.todos', data.todos);
 		}
 		//全选or取消全选
 		function checkAllTodo(done) {
 			data.todos.forEach((todo) => {
 				todo.done = done;
-			}); setLocalSttorage()
+			});
 		}
 		//清除所有已经完成的todo
 		function clearAllTodo() {
@@ -97,33 +87,26 @@ export default {
 			//   };
 			// });
 			// remove(data.todos, (n) => n.done == true);
-			setLocalSttorage()
-			console.log("data.todos", data.todos);
+			console.log('data.todos', data.todos);
 		}
 		function editTodo(id, value) {
 			data.todos.forEach((todo) => {
 				if (todo.id === id) {
 					todo.title = value;
 				}
-			}); setLocalSttorage()
+			});
 		}
 
-		provide("checkTodo", checkTodo);
-		provide("deleteTodo", deleteTodo);
-		provide("editTodo", editTodo);
+		provide('checkTodo', checkTodo);
+		provide('deleteTodo', deleteTodo);
+		provide('editTodo', editTodo);
 
-		console.log("todos.length", data.todos.length);
+		console.log('todos.length', data.todos.length);
 		// console.log("arr", arr);
-		console.log("addTodo", addTodo);
+		console.log('addTodo', addTodo);
 		const router = useRouter();
 		function toGreedySnake() {
-			router.push({ name: "greedysnake" });
-			setLocalSttorage()
-		}
-		//进行localStorage
-		function setLocalSttorage() {
-			const parsed = JSON.stringify(data.todos)
-			localStorage.setItem('todos', parsed)
+			router.push({ name: 'greedysnake' });
 		}
 		return {
 			...toRefs(data),
@@ -134,11 +117,11 @@ export default {
 			clearAllTodo,
 			toGreedySnake,
 			editTodo,
-			setLocalSttorage
 		};
 	},
 };
 </script>
+
 
 <style>
 /*base*/
@@ -189,3 +172,4 @@ body {
 	border-radius: 5px;
 }
 </style>
+

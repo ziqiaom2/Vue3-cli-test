@@ -17,7 +17,7 @@
   </ul>
 </template>
 
-<script>
+<script lang="ts">
 import MyItem from "./MyItem.vue";
 import { VueDraggableNext } from "vue-draggable-next";
 import { ref } from '@vue/reactivity';
