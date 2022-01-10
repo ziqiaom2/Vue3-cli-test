@@ -4,9 +4,9 @@
 
     <MyItem
       :draggable="true"
-      @dragenter="dragenter($event, todos.indexOf(todoObj))"
-      @dragover="dragover($event, todos.indexOf(todoObj))"
-      @dragstart="dragstart(todos.indexOf(todoObj))"
+      @dragenter="dragenter($event, index)"
+      @dragover="dragover($event, index)"
+      @dragstart="dragstart(index)"
       class="list-group-item bg-gray-300 m-1 p-3 rounded-md text-center"
       v-for="todoObj in todos"
       :key="todoObj.id"
@@ -20,7 +20,6 @@
 import MyItem from "./MyItem.vue";
 import { VueDraggableNext } from "vue-draggable-next";
 import { ref } from '@vue/reactivity';
-import { inject } from '@vue/runtime-core';
 export default {
   name: "MyList",
   //draggable: VueDraggableNext
@@ -28,25 +27,22 @@ export default {
 
   //声明接收App传递过来的数据，其中todos是自己用的，checkTodo和deleteTodo是给子组件MyItem用的
   props: ["todos"],
-  setup(props){
-    let indexChange = inject('indexChange');
+  setup(){
+
     let dragIndex = ref('')
     let enterIndex = ref('')
     function dragstart(index) {
-      dragIndex = index;
-      console.log(index)
+      this.dragIndex = index;
     }
     function dragenter(e, index) {
       e.preventDefault();
       // 避免源对象触发自身的dragenter事件
-      if (dragIndex !== index) {
-        const source = props.todos[dragIndex];
-        indexChange(dragIndex,index,source)
-        // props.todos.splice(dragIndex, 1);
-        // props.todos.splice(index, 0, source);
+      if (this.dragIndex !== index) {
+        const source = this.list[this.dragIndex];
+        this.list.splice(this.dragIndex, 1);
+        this.list.splice(index, 0, source);
         // 排序变化后目标对象的索引变成源对象的索引
-        dragIndex = index;
-        console.log('index:',index)
+        this.dragIndex = index;
       }
     }
     function dragover(e, index) {
@@ -57,8 +53,7 @@ export default {
       enterIndex,
       dragstart,
       dragenter,
-      dragover,
-      indexChange
+      dragover
     }
 
   }

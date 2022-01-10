@@ -107,17 +107,15 @@ export default {
 				}
 			}); setLocalSttorage()
 		}
-		function indexChange(dragIndex,index,source){
+		function indexChange(){
 			console.log('indexChange is triggered')
-			data.todos.splice(dragIndex, 1);
-      data.todos.splice(index, 0, source);
+			
 			setLocalSttorage()
 		}
 
 		provide("checkTodo", checkTodo);
 		provide("deleteTodo", deleteTodo);
 		provide("editTodo", editTodo);
-		provide("indexChange", indexChange);
 
 		// console.log("todos.length", data.todos.length);
 		// // console.log("arr", arr);

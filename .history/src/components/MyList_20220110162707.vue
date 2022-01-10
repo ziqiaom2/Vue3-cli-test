@@ -29,7 +29,7 @@ export default {
   //声明接收App传递过来的数据，其中todos是自己用的，checkTodo和deleteTodo是给子组件MyItem用的
   props: ["todos"],
   setup(props){
-    let indexChange = inject('indexChange');
+    inject ()
     let dragIndex = ref('')
     let enterIndex = ref('')
     function dragstart(index) {
@@ -41,7 +41,6 @@ export default {
       // 避免源对象触发自身的dragenter事件
       if (dragIndex !== index) {
         const source = props.todos[dragIndex];
-        indexChange(dragIndex,index,source)
         // props.todos.splice(dragIndex, 1);
         // props.todos.splice(index, 0, source);
         // 排序变化后目标对象的索引变成源对象的索引
@@ -57,8 +56,7 @@ export default {
       enterIndex,
       dragstart,
       dragenter,
-      dragover,
-      indexChange
+      dragover
     }
 
   }
