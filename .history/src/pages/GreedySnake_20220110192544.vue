@@ -6,9 +6,11 @@
       <div id="stage">
         <div id="snake">
           <!--snake内部的div 表示蛇的各部分-->
-          <div></div>
-          <div></div>
-          <div></div>
+          <div v-for="body in ssnake.bodies"
+          :key="body.index"
+          />
+        
+
         </div>
 
         <!--设置食物-->
@@ -22,14 +24,8 @@
       </div>
       <!--设置游戏的积分牌-->
       <div id="score-panel">
-        <div>
-          SCORE:
-          <span id="score">0</span>
-        </div>
-        <div>
-          level:
-          <span id="level">1</span>
-        </div>
+        <div>SCORE:<span id="score">0</span></div>
+        <div>level:<span id="level">1</span></div>
       </div>
     </div>
     <button @click="toTest">测试</button>
@@ -47,25 +43,25 @@ import Snake from '../GreedySnake/Snake';
 export default {
   name: "GreedySnake",
   setup() {
+      let ssnake = new Snake()
+      const router =useRouter()
+      function toTest (){
+        new GameControl()
+      }
+      function backToHome (){
+        // router.push({name:'home'})
+        router.back()
 
-    const router = useRouter()
-    function toTest() {
-      new GameControl()
+      }
+      // const scorePanel = new ScorePanel(100, 2);
+      // scorePanel.addScore()
+      return {
+        toTest,
+        backToHome,
+        ssnake
+      };
     }
-    function backToHome() {
-      // router.push({name:'home'})
-      router.back()
-
-    }
-    // const scorePanel = new ScorePanel(100, 2);
-    // scorePanel.addScore()
-    return {
-      toTest,
-      backToHome,
-
-    };
   }
-}
 </script>
 
 <style lang="less" src='../GreedySnake/index.less' scoped>

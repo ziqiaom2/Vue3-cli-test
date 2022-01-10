@@ -7,8 +7,6 @@
         <div id="snake">
           <!--snake内部的div 表示蛇的各部分-->
           <div></div>
-          <div></div>
-          <div></div>
         </div>
 
         <!--设置食物-->

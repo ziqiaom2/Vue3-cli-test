@@ -14,7 +14,7 @@
 <script>
 import { nanoid } from "nanoid";
 import { ref } from "vue";
-import {  myDebounce} from '@rexm112/npm'
+
 export default {
   name: "MyHeader",
   //接收从App传递过来的addTodo
@@ -23,7 +23,24 @@ export default {
     let title = ref(" ");
     let computedTitle = ref(" ");
 
-    
+    function myDebounce(func, wait = 2000) {
+      let timer = null
+
+      return () => {
+        console.log('myDebounce is triggered')
+
+        if (timer) {
+          clearTimeout(timer)
+        }
+        timer = setTimeout(() => {
+          func()
+          console.log('timer is set')
+
+        }, wait);
+      }
+
+
+    }
 
     // function myDebounce(func, wait = 1000, immediate = true) {
     //   let timer

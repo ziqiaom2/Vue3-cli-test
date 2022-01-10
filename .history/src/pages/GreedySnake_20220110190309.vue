@@ -8,7 +8,7 @@
           <!--snake内部的div 表示蛇的各部分-->
           <div></div>
           <div></div>
-          <div></div>
+
         </div>
 
         <!--设置食物-->
@@ -22,14 +22,8 @@
       </div>
       <!--设置游戏的积分牌-->
       <div id="score-panel">
-        <div>
-          SCORE:
-          <span id="score">0</span>
-        </div>
-        <div>
-          level:
-          <span id="level">1</span>
-        </div>
+        <div>SCORE:<span id="score">0</span></div>
+        <div>level:<span id="level">1</span></div>
       </div>
     </div>
     <button @click="toTest">测试</button>
@@ -38,34 +32,30 @@
 
 <script>
 import GameControl from "@/GreedySnake/GameControl";
-import snake from '../GreedySnake/Snake';
+import ScorePanel from "@/GreedySnake/ScorePanel";
 import { useRouter } from 'vue-router';
-import { ref } from '@vue/reactivity';
-import Snake from '../GreedySnake/Snake';
 
 
 export default {
   name: "GreedySnake",
   setup() {
+      const router =useRouter()
+      function toTest (){
+        new GameControl()
+      }
+      function backToHome (){
+        // router.push({name:'home'})
+        router.back()
 
-    const router = useRouter()
-    function toTest() {
-      new GameControl()
+      }
+      // const scorePanel = new ScorePanel(100, 2);
+      // scorePanel.addScore()
+      return {
+        toTest,
+        backToHome
+      };
     }
-    function backToHome() {
-      // router.push({name:'home'})
-      router.back()
-
-    }
-    // const scorePanel = new ScorePanel(100, 2);
-    // scorePanel.addScore()
-    return {
-      toTest,
-      backToHome,
-
-    };
   }
-}
 </script>
 
 <style lang="less" src='../GreedySnake/index.less' scoped>

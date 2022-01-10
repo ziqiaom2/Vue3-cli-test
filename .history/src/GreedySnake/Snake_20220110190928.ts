@@ -92,8 +92,7 @@ class Snake {
   addBody() {
     // 向element中添加一个div
     console.log('addBody is triggered');
-    // 有bug
-    this.element.insertAdjacentHTML('beforeend', '<div></div>');
+    this.element.insertAdjacentHTML("beforeend", '<div></div>');
   }
 
   // 添加一个蛇身体移动的方法

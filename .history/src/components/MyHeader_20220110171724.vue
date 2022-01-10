@@ -14,7 +14,7 @@
 <script>
 import { nanoid } from "nanoid";
 import { ref } from "vue";
-import {  myDebounce} from '@rexm112/npm'
+
 export default {
   name: "MyHeader",
   //接收从App传递过来的addTodo
@@ -22,8 +22,22 @@ export default {
   setup(props) {
     let title = ref(" ");
     let computedTitle = ref(" ");
+    function showTitle() {
+      // myDebounce(() => computedTitle.value = title.value, 1000)
+      // setTimeout(() => computedTitle.value = title.value,1000);
+      console.log('showTitle is triggered')
+      myDebounce(()=>console.log('Debounced'))
 
-    
+    }
+    function myDebounce (func,wait =1000){
+      let timer
+      if (!timer){
+        timer = setTimeout(() => {
+          func()
+          
+        }, wait);
+      }
+    }
 
     // function myDebounce(func, wait = 1000, immediate = true) {
     //   let timer
@@ -34,10 +48,10 @@ export default {
     //       timer = null;
     //       // 延迟执行的情况下，函数会在延迟函数中执行
     //       // 使用到之前缓存的参数和上下文
-
+          
     //         func()
 
-
+          
     //     }, wait);
 
     //   // 这里返回的函数是每次实际调用的函数
@@ -59,14 +73,7 @@ export default {
     //   };
     // }
 
-    function showTitle() {
-      myDebounce(function () { computedTitle.value = title.value })()
-      // myDebounce(() => console.log('myDebounce is triggered'))()
-      // setTimeout(() => computedTitle.value = title.value,1000);
-      // console.log('showTitle is triggered')
-      // myDebounce(() => console.log('Debounced'))
 
-    }
 
 
 
