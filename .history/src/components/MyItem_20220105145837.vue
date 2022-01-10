@@ -8,7 +8,7 @@
       <!-- 如下代码也能实现功能，但是不太推荐，因为有点违反原则，因为修改了props -->
       <!-- <input type="checkbox" v-model="todo.done"/> -->
       <!-- #endregion -->
-      <span v-show="!edited">{{ todo.title }}</span>
+      <span v-show="!edited"> {{ todo.title }}</span>
       <input
         ref="editBox"
         @click="editClicked"
@@ -17,9 +17,10 @@
         @keyup.enter="editCompleted(todo.id)()"
         :value="todo.title"
       />
-      <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
-      <button class="btn btn-edit" @click="handleEdit(todo.id)">编辑</button>
-    </div>
+    <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
+    <button class="btn btn-edit" @click="handleEdit(todo.id)">编辑</button>
+        </div>
+
   </li>
 </template>
 

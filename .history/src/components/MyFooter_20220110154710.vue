@@ -60,21 +60,20 @@ export default {
 
     const total = computed(() => props.todos.length)
     const doneTotal = computed(() => props.todos.reduce((pre, todo) => pre + (todo.done ? 1 : 0), 0))
-    const isAll = computed({
-      get: () => doneTotal.value === total.value && total.value > 0,
+    const isAll = computed( {
+      get : () => doneTotal.value === total.value && total.value > 0,
 
       //isAll被修改时set被调用
-      set: (value) =>
+      set : (value) => 
         props.checkAllTodo(value)
-
+      
     })
 
 
     return {
       clearAll,
       total,
-      doneTotal,
-      isAll
+      doneTotal
     };
   },
 };

@@ -17,33 +17,33 @@ import { computed } from 'vue'
 export default {
   name: "MyFooter",
   props: ["todos", "checkAllTodo", "clearAllTodo"],
-  // computed: {
-  //   //总数
-  //   // total() {
-  //   //   return this.todos.length;
-  //   // },
-  //   //已完成数
-  //   // doneTotal() {
-  //   //   //此处使用reduce方法做条件统计
-  //   //   /* const x = this.todos.reduce((pre,current)=>{
-  //   // 			console.log('@',pre,current)
-  //   // 			return pre + (current.done ? 1 : 0)
-  //   // 		},0) */
-  //   //   //简写
-  //   //   return this.todos.reduce((pre, todo) => pre + (todo.done ? 1 : 0), 0);
-  //   // },
-  //   //控制全选框
-  // //   isAll: {
-  // //     //全选框是否勾选
-  // //     get() {
-  // //       return this.doneTotal === this.total && this.total > 0;
-  // //     },
-  // //     //isAll被修改时set被调用
-  // //     set(value) {
-  // //       this.checkAllTodo(value);
-  // //     },
-  // //   },
-  // },
+  computed: {
+    //总数
+    // total() {
+    //   return this.todos.length;
+    // },
+    //已完成数
+    // doneTotal() {
+    //   //此处使用reduce方法做条件统计
+    //   /* const x = this.todos.reduce((pre,current)=>{
+    // 			console.log('@',pre,current)
+    // 			return pre + (current.done ? 1 : 0)
+    // 		},0) */
+    //   //简写
+    //   return this.todos.reduce((pre, todo) => pre + (todo.done ? 1 : 0), 0);
+    // },
+    //控制全选框
+    isAll: {
+      //全选框是否勾选
+      get() {
+        return this.doneTotal === this.total && this.total > 0;
+      },
+      //isAll被修改时set被调用
+      set(value) {
+        this.checkAllTodo(value);
+      },
+    },
+  },
   setup(props) {
     /* checkAll(e){
         this.checkAllTodo(e.target.checked)
@@ -60,21 +60,21 @@ export default {
 
     const total = computed(() => props.todos.length)
     const doneTotal = computed(() => props.todos.reduce((pre, todo) => pre + (todo.done ? 1 : 0), 0))
-    const isAll = computed({
-      get: () => doneTotal.value === total.value && total.value > 0,
-
+    const isAll = computed(() => {
+      get(){
+        return this.doneTotal === this.total && this.total > 0;
+      }
       //isAll被修改时set被调用
-      set: (value) =>
-        props.checkAllTodo(value)
-
+      set(value) {
+        this.checkAllTodo(value);
+      }
     })
 
 
     return {
       clearAll,
       total,
-      doneTotal,
-      isAll
+      doneTotal
     };
   },
 };
