@@ -155,23 +155,4 @@ li:hover {
 li:hover button {
   display: block;
 }
-.btn-danger {
-	color: #fff;
-	background-color: #da4f49;
-	border: 1px solid #bd362f;
-}
-.btn-danger:hover {
-	color: #fff;
-	background-color: #bd362f;
-}
-.btn-edit {
-	color: #fff;
-	background-color: #55da49;
-	border: 1px solid #40bd2f;
-}
-.btn-edit:hover {
-	color: #fff;
-	background-color: #195511;
-}
-
 </style>

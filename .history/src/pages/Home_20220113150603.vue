@@ -5,7 +5,11 @@ prettier/prettier */
 	<HelloWorld msg="Hello Vue 3.0" />
 	<MyHeader :addTodo="addTodo" />
 	<MyList :todos="todos" />
-	<MyFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAllTodo="clearAllTodo" />
+  <MyFooter
+    :todos="todos"
+    :checkAllTodo="checkAllTodo"
+    :clearAllTodo="clearAllTodo"
+  />
 	<Test></Test>
 	<div @click="toGreedySnake">贪吃蛇</div>
 </template>
@@ -31,8 +35,8 @@ export default {
 	},
 	created() {
 		console.log('created:', this)
-		if(this.todos){
-    this.todos = JSON.parse(localStorage.getItem("todos"));}
+		this.todos = JSON.parse(localStorage.getItem('todos'))
+
 	},
 
 
@@ -152,7 +156,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 /*base*/
 body {
 	background: #fff;
@@ -169,6 +173,24 @@ body {
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
 		0 1px 2px rgba(0, 0, 0, 0.05);
 	border-radius: 4px;
+}
+.btn-danger {
+	color: #fff;
+	background-color: #da4f49;
+	border: 1px solid #bd362f;
+}
+.btn-danger:hover {
+	color: #fff;
+	background-color: #bd362f;
+}
+.btn-edit {
+	color: #fff;
+	background-color: #55da49;
+	border: 1px solid #40bd2f;
+}
+.btn-edit:hover {
+	color: #fff;
+	background-color: #195511;
 }
 .btn:focus {
 	outline: none;

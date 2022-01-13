@@ -95,12 +95,11 @@ class Snake {
     // 向element中添加一个div
     console.log('addBody is triggered');
     // 有bug
-    // this.element.appendChild(document.createElement('div'));
-    // this.bodies = this.element.getElementsByTagName("div");
-    this.element.insertAdjacentHTML("beforeend", "<div></div>");
+    this.element.appendChild(document.createElement('div'));
+    this.bodies = this.element.getElementsByTagName("div");
     console.log('bodies:',this.bodies);
 
-
+    this.moveBody()
   }
 
   // 添加一个蛇身体移动的方法

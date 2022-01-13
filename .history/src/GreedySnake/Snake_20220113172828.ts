@@ -100,7 +100,7 @@ class Snake {
     this.element.insertAdjacentHTML("beforeend", "<div></div>");
     console.log('bodies:',this.bodies);
 
-
+    this.moveBody()
   }
 
   // 添加一个蛇身体移动的方法

@@ -31,7 +31,7 @@ export default {
 	},
 	created() {
 		console.log('created:', this)
-		if(this.todos){
+		if(!this.todos){
     this.todos = JSON.parse(localStorage.getItem("todos"));}
 	},
 
