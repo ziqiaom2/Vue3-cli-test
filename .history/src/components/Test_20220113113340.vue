@@ -9,18 +9,42 @@
 
 <script>
 import remove from "lodash/remove";
-import useAutoDelete from '../hooks/useAutoDelete';
+import { reactive, ref, toRefs } from "@vue/reactivity";
+import { onMounted ,beforeUnmount} from '@vue/runtime-core';
 // import {toReactive} from 'vue'
 
 export default {
   name: "Test",
   components: {},
   setup() {
-    let { dee, deleteTodo, startDeleteTodo } = useAutoDelete()
-    return {
-      dee, deleteTodo, startDeleteTodo
+    
+    
+    function deleteTodo(id) {
+      // remove(todos, (n) => n.id == id);
+      // 解决，可触发响应式
+
+      todos.dee = todos.dee.filter((todo) => todo.id !== id);
+      // 响应式丢失，变为普通数组，元素为proxy对象
+      //即使再包一层reactive函数，依然丢失响应式
+      console.log(
+        "filtered",
+        todos.dee.filter((todo) => todo.id !== id)
+      );
+      console.log("todos.dee:", todos.dee);
     }
-  }
+    onMounted(
+      () => {if(todos){
+      setInterval(() => startDeleteTodo(), 1500)}}
+    )
+
+
+    return {
+      ...toRefs(todos),
+
+      deleteTodo,
+      startDeleteTodo
+    };
+  },
 };
 </script>
 

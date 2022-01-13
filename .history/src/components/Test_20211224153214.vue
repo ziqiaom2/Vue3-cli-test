@@ -2,25 +2,48 @@
   <ul>
     <li v-for="todo in dee" :key="todo.id">
       <span>{{ todo.title }}</span>
-      <button @click="startDeleteTodo()">删除</button>
+      <button @click="deleteTodo(todo.id)">删除</button>
     </li>
   </ul>
 </template>
 
 <script>
 import remove from "lodash/remove";
-import useAutoDelete from '../hooks/useAutoDelete';
+import { reactive, ref, toRefs } from "@vue/reactivity";
 // import {toReactive} from 'vue'
 
 export default {
   name: "Test",
   components: {},
   setup() {
-    let { dee, deleteTodo, startDeleteTodo } = useAutoDelete()
-    return {
-      dee, deleteTodo, startDeleteTodo
+    let todos = reactive({
+      dee: [
+        { id: "001", title: "Vue", done: false },
+        { id: "002", title: "React", done: false },
+        { id: "003", title: "Angular", done: false },
+      ],
+    });
+
+    function deleteTodo(id) {
+      // remove(todos, (n) => n.id == id);
+      // 解决，可触发响应式
+
+      todos.dee = todos.dee.filter((todo) => todo.id !== id);
+      // 响应式丢失，变为普通数组，元素为proxy对象
+      //即使再包一层reactive函数，依然丢失响应式
+      console.log(
+        "filtered",
+        todos.dee.filter((todo) => todo.id !== id)
+      );
+      console.log("todos.dee:", todos.dee);
     }
-  }
+
+    return {
+      ...toRefs(todos),
+
+      deleteTodo,
+    };
+  },
 };
 </script>
 

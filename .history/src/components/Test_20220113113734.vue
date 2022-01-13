@@ -16,11 +16,17 @@ export default {
   name: "Test",
   components: {},
   setup() {
-    let { dee, deleteTodo, startDeleteTodo } = useAutoDelete()
+    
+    
+
+
     return {
-      dee, deleteTodo, startDeleteTodo
-    }
-  }
+      ...toRefs(todos),
+
+      deleteTodo,
+      startDeleteTodo
+    };
+  },
 };
 </script>
 

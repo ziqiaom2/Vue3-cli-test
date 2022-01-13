@@ -5,7 +5,7 @@ class ScorePanel {
   upScore: number;
   scoreEle : HTMLElement;
   levelEle : HTMLElement;
-  constructor(maxLevel = 10, upScore = 2) {
+  constructor(maxLevel = 10, upScore = 10) {
     this.scoreEle = document.getElementById("score")!;
     this.levelEle = document.getElementById("level")!;
     this.maxLevel = maxLevel;
@@ -13,7 +13,7 @@ class ScorePanel {
   }
   addScore() {
     this.scoreEle.innerHTML = ++this.score + "";
-    if((this.score / this.upScore >= 1)&&(this.score % this.upScore ===0)){
+    if((this.score / this.upScore > 0)&&(this.score % this.upScore ===0)){
       this.levelUp()
     }
   }

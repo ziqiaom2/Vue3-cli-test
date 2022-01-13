@@ -9,6 +9,7 @@
 
 <script>
 import remove from "lodash/remove";
+import { reactive, ref, toRefs } from "@vue/reactivity";
 import useAutoDelete from '../hooks/useAutoDelete';
 // import {toReactive} from 'vue'
 
@@ -16,11 +17,17 @@ export default {
   name: "Test",
   components: {},
   setup() {
-    let { dee, deleteTodo, startDeleteTodo } = useAutoDelete()
+    
+    
+
+
     return {
-      dee, deleteTodo, startDeleteTodo
-    }
-  }
+      ...toRefs(todos),
+
+      deleteTodo,
+      startDeleteTodo
+    };
+  },
 };
 </script>
 

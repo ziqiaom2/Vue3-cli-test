@@ -15,12 +15,6 @@ import useAutoDelete from '../hooks/useAutoDelete';
 export default {
   name: "Test",
   components: {},
-  setup() {
-    let { dee, deleteTodo, startDeleteTodo } = useAutoDelete()
-    return {
-      dee, deleteTodo, startDeleteTodo
-    }
-  }
 };
 </script>
 

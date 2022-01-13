@@ -1,8 +1,13 @@
 /* eslint-disable prettier/prettier */
 <template>
   <li  @click="handleCheck(todo.id)">
+    <!-- 这里为什么不向外层冒泡呢？？？ -->
     <div @click="testFunc" @dblclick="handleEdit(todo.id)">
       <input type="checkbox" :checked="todo.done" />
+      <!-- #region -->
+      <!-- 如下代码也能实现功能，但是不太推荐，因为有点违反原则，因为修改了props -->
+      <!-- <input type="checkbox" v-model="todo.done"/> -->
+      <!-- #endregion -->
       <span v-show="!edited">{{ todo.title }}</span>
       <input
         ref="editBox"
@@ -15,24 +20,6 @@
       <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
       <button class="btn btn-edit" @click="handleEdit(todo.id)">编辑</button>
     </div>
-
-
-
-
-    <!-- <label @click="testFunc" @dblclick="handleEdit(todo.id)">
-      <input type="checkbox" :checked="todo.done" />
-      <span v-show="!edited">{{ todo.title }}</span>
-      <input
-        ref="editBox"
-        @click="editClicked"
-        type="text"
-        v-if="edited"
-        @keyup.enter="editCompleted(todo.id)()"
-        :value="todo.title"
-      />
-      <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
-      <button class="btn btn-edit" @click="handleEdit(todo.id)">编辑</button>
-    </label> -->
   </li>
 </template>
 
@@ -93,7 +80,6 @@ export default {
     }
     function testFunc() {
       console.log("testFunc is triggered");
-
     }
     return {
       handleCheck,
